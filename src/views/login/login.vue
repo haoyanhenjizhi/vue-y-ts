@@ -1,5 +1,5 @@
 <template>
-  <div class="login"></div>
+  <div>Login</div>
 </template>
 
 <script lang="ts">
@@ -12,4 +12,4 @@ export default defineComponent({
 })
 </script>
 
-<style scoped lang="less"></style>
+<style scoped></style>
