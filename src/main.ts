@@ -10,6 +10,7 @@ import App from './App.vue'
 import './service/axios_demo'
 import router from './router'
 import store from './store'
+import { hyRequest } from './service'
 
 const app = createApp(App)
 
@@ -21,3 +22,8 @@ app.use(globalRegister) //引入局部注册相关模块进行调用
 app.mount('#app')
 console.log(process.env.VUE_APP_BASE_URL)
 // console.log(process.env.VUE_APP_BASE_NAME)
+
+hyRequest.requset({
+  url: 'home/multidata',
+  method: 'GET'
+})
