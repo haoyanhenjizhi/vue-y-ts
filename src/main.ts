@@ -22,8 +22,28 @@ app.use(globalRegister) //引入局部注册相关模块进行调用
 app.mount('#app')
 console.log(process.env.VUE_APP_BASE_URL)
 // console.log(process.env.VUE_APP_BASE_NAME)
-
-hyRequest.requset({
-  url: 'home/multidata',
-  method: 'GET'
-})
+interface DataType {
+  data: any
+  returnCode: string
+  success: boolean
+}
+hyRequest
+  .get<DataType>({
+    url: '/home/multidata',
+    method: 'GET'
+    // interceptors: {
+    //   requestInterceptor: (config) => {
+    //     console.log('单独请求的config')
+    //     return config
+    //   },
+    //   responseInterceptor: (res) => {
+    //     console.log('单独响应的response')
+    //     return res
+    //   }
+    // }
+  })
+  .then((res) => {
+    console.log(res.data)
+    console.log(res.returnCode)
+    console.log(res.success)
+  })
