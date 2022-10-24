@@ -68,7 +68,7 @@ class HYRequest {
     )
   }
   //根据不同的url创建不同的url实例
-  requset<T>(config: HYRequestConfig): Promise<T> {
+  requset<T>(config: HYRequestConfig<T>): Promise<T> {
     return new Promise((resolve, reject) => {
       //1. 单个请求对请求的config的处理
       if (config.interceptors?.requestInterceptor) {
@@ -84,6 +84,7 @@ class HYRequest {
           //1.单个请求对于数据的处理
           if (config.interceptors?.responseInterceptor) {
             res = config.interceptors.responseInterceptor(res)
+            //这里之所以出现类型不匹配是因为传入的是AxiosResponse类型 但是需要传入T类型 所以上面要改
           }
           //2.将showloading设置为 true 不然会影响下一个请求
           this.showLoading = DEFAULT_LOADING
@@ -96,16 +97,16 @@ class HYRequest {
         })
     })
   }
-  get<T>(config: HYRequestConfig): Promise<T> {
+  get<T>(config: HYRequestConfig<T>): Promise<T> {
     return this.requset<T>({ ...config, method: 'GET' })
   }
-  post<T>(config: HYRequestConfig): Promise<T> {
+  post<T>(config: HYRequestConfig<T>): Promise<T> {
     return this.requset<T>({ ...config, method: 'POST' })
   }
-  delete<T>(config: HYRequestConfig): Promise<T> {
+  delete<T>(config: HYRequestConfig<T>): Promise<T> {
     return this.requset<T>({ ...config, method: 'DELETE' })
   }
-  patch<T>(config: HYRequestConfig): Promise<T> {
+  patch<T>(config: HYRequestConfig<T>): Promise<T> {
     return this.requset<T>({ ...config, method: 'PATCH' })
   }
 }

@@ -6,8 +6,11 @@ import {
   ElButton,
   ElForm,
   ElFormItem,
+  ElIcon,
   ElInput,
-  ElRadio
+  ElRadio,
+  ElTabPane,
+  ElTabs
 } from 'element-plus'
 
 const components = [
@@ -17,7 +20,10 @@ const components = [
   ElInput,
   ElRadio,
   ElAlert,
-  ElAside
+  ElAside,
+  ElTabs,
+  ElTabPane,
+  ElIcon
 ]
 //下面的为遍历注册组件函数
 export default function (app: App): void {

@@ -3,7 +3,8 @@ import { createApp } from 'vue'
 //这里是全局引入element-plus的方式
 // import ElementPlus from 'element-plus'
 import 'element-plus/lib/theme-chalk/base.css'
-
+import 'normalize.css'
+import './assets/css/index.less'
 //局部引入 element-plus
 import { globalRegister } from './global'
 import App from './App.vue'
