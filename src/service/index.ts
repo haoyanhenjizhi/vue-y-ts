@@ -8,7 +8,7 @@ export const hyRequest = new HYRequest({
   interceptors: {
     //这里这样写是为了每个实例传入不同的拦截器
     requestInterceptor: (config) => {
-      console.log('请求成功的拦截')
+      // console.log('请求成功的拦截')
       const token = ''
       if (token) {
         config.headers.Authorization = `Bearer${token}`
@@ -16,15 +16,15 @@ export const hyRequest = new HYRequest({
       return config
     },
     requestInterceptorCatch: (err) => {
-      console.log('请求失败的拦截')
+      // console.log('请求失败的拦截')
       return err
     },
     responseInterceptor: (res) => {
-      console.log('响应成功的拦截')
+      // console.log('响应成功的拦截')
       return res
     },
     responseInterceptorCatch(err) {
-      console.log('响应失败的拦截')
+      // console.log('响应失败的拦截')
       return err
     }
   }

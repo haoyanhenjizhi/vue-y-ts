@@ -1,8 +1,6 @@
 import { App } from 'vue'
 import 'element-plus/lib/theme-chalk/base.css'
 import {
-  ElAlert,
-  ElAside,
   ElButton,
   ElForm,
   ElFormItem,
@@ -10,7 +8,9 @@ import {
   ElInput,
   ElRadio,
   ElTabPane,
-  ElTabs
+  ElTabs,
+  ElCheckbox,
+  ElLink
 } from 'element-plus'
 
 const components = [
@@ -19,11 +19,11 @@ const components = [
   ElFormItem,
   ElInput,
   ElRadio,
-  ElAlert,
-  ElAside,
   ElTabs,
   ElTabPane,
-  ElIcon
+  ElIcon,
+  ElCheckbox,
+  ElLink
 ]
 //下面的为遍历注册组件函数
 export default function (app: App): void {
