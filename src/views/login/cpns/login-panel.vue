@@ -39,7 +39,7 @@ export default defineComponent({
     const accountRef = ref<InstanceType<typeof LoginAccount>>() //这里是定义类型 严格代码
 
     const handleLoginClick = () => {
-      accountRef.value?.loginAction()
+      accountRef.value?.loginAction(isKeepPassword.value)
     }
     return {
       isKeepPassword,
