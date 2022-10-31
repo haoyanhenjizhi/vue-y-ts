@@ -29,7 +29,7 @@ interface DataType {
   success: boolean
 }
 hyRequest.get<DataType>({
-  url: '/home/multidata',
+  url: '',
   method: 'GET'
   // interceptors: {
   //   requestInterceptor: (config) => {

@@ -3,7 +3,7 @@ import type { AxiosInstance } from 'axios'
 import type { HYRequestConfig, HYRequestInterceptors } from './type' //ts封装类型
 import { ElLoading } from 'element-plus'
 import { ILoadingInstance } from 'element-plus/lib/el-loading/src/loading.type'
-const DEFAULT_LOADING = true
+const DEFAULT_LOADING = false
 class HYRequest {
   instance: AxiosInstance
   interceptors?: HYRequestInterceptors

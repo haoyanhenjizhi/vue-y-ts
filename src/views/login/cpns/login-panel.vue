@@ -1,7 +1,7 @@
 <template>
   <div class="loginpancel">
     <h1 class="title">后台管理系统</h1>
-    <el-tabs type="border-card" stretch>
+    <el-tabs type="border-card" stretch v-model="currenTab">
       <el-tab-pane name="account">
         <template #label>
           <span><i class="el-icon-user-solid"></i> 账号登录</span>
@@ -36,14 +36,22 @@ export default defineComponent({
   },
   setup() {
     const isKeepPassword = ref(true)
+    const currenTab = ref<string>('account')
     const accountRef = ref<InstanceType<typeof LoginAccount>>() //这里是定义类型 严格代码
+    const phoneRef = ref<InstanceType<typeof LoginPhone>>() //这里是定义类型 严格代码
 
     const handleLoginClick = () => {
-      accountRef.value?.loginAction(isKeepPassword.value)
+      if (currenTab.value === 'account') {
+        accountRef.value?.loginAction(isKeepPassword.value)
+      } else {
+        console.log('手机登录')
+      }
     }
     return {
       isKeepPassword,
       accountRef,
+      phoneRef,
+      currenTab,
       handleLoginClick
     }
   }

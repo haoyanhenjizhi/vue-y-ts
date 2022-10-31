@@ -15,7 +15,7 @@
 import { defineComponent, reactive, ref } from 'vue'
 import { rules } from '../config/account-config'
 import localCache from '@/untils/cache'
-
+import { useStore } from 'vuex'
 import { ElForm } from 'Element-plus'
 export default defineComponent({
   props: {
@@ -24,6 +24,7 @@ export default defineComponent({
     // }
   },
   setup() {
+    const store = useStore()
     const account = reactive({
       name: localCache.getCache('name') ?? '',
       password: localCache.getCache('password') ?? ''
@@ -42,6 +43,7 @@ export default defineComponent({
           }
         }
         //2.登录验证
+        store.dispatch('login/accountLoginAction', { ...account })
       })
     }
 
