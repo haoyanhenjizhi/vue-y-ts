@@ -2,6 +2,8 @@ import HYRequest from './request'
 //根据不同的baseurl封装不同的实例
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { BASE_URL, TIME_OUT } from './request/config'
+
+import localCache from '@/untils/cache'
 export const hyRequest = new HYRequest({
   baseURL: BASE_URL,
   timeout: TIME_OUT,
@@ -9,7 +11,7 @@ export const hyRequest = new HYRequest({
     //这里这样写是为了每个实例传入不同的拦截器
     requestInterceptor: (config) => {
       // console.log('请求成功的拦截')
-      const token = ''
+      const token = localCache.getCache('token')
       if (token) {
         config.headers.Authorization = `Bearer${token}`
       }

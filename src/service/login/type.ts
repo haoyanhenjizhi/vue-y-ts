@@ -3,7 +3,13 @@ export interface IAccount {
   password: string
 }
 
-export interface IDataType {
+export interface ILoginResult {
+  id: number
+  name: number
+  token: string
+}
+
+export interface IDataType<T = any> {
   code: number
-  data: any
+  data: T
 }

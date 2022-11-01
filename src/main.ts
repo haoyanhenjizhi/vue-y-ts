@@ -12,7 +12,7 @@ import './service/axios_demo'
 import router from './router'
 import store from './store'
 import { hyRequest } from './service'
-
+import { setupStore } from './store'
 const app = createApp(App)
 
 // 注册element-plus/其他
@@ -21,6 +21,7 @@ app.use(router)
 app.use(store)
 app.use(globalRegister) //引入局部注册相关模块进行调用
 app.mount('#app')
+setupStore()
 // console.log(process.env.VUE_APP_BASE_URL)
 // console.log(process.env.VUE_APP_BASE_NAME)
 interface DataType {

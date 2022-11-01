@@ -17,5 +17,8 @@ const store = createStore<IRootStore>({
     login
   }
 })
+export function setupStore(): void {
+  store.dispatch('login/loadLocalL')
+}
 
 export default store
