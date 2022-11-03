@@ -10,7 +10,15 @@ import {
   ElTabPane,
   ElTabs,
   ElCheckbox,
-  ElLink
+  ElLink,
+  ElContainer,
+  ElHeader,
+  ElMain,
+  ElAside,
+  ElMenu,
+  ElMenuItem,
+  ElMenuItemGroup,
+  ElSubmenu
 } from 'element-plus'
 
 const components = [
@@ -23,7 +31,15 @@ const components = [
   ElTabPane,
   ElIcon,
   ElCheckbox,
-  ElLink
+  ElLink,
+  ElContainer,
+  ElHeader,
+  ElMain,
+  ElAside,
+  ElMenu,
+  ElMenuItem,
+  ElMenuItemGroup,
+  ElSubmenu
 ]
 //下面的为遍历注册组件函数
 export default function (app: App): void {
