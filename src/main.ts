@@ -11,7 +11,7 @@ import App from './App.vue'
 import './service/axios_demo'
 import router from './router'
 import store from './store'
-import { hyRequest } from './service'
+
 import { setupStore } from './store'
 const app = createApp(App)
 
@@ -20,26 +20,27 @@ const app = createApp(App)
 app.use(router)
 app.use(store)
 app.use(globalRegister) //引入局部注册相关模块进行调用
-app.mount('#app')
 setupStore()
+app.mount('#app')
+
 // console.log(process.env.VUE_APP_BASE_URL)
 // console.log(process.env.VUE_APP_BASE_NAME)
-interface DataType {
-  data: any
-  returnCode: string
-  success: boolean
-}
-hyRequest.get<DataType>({
-  url: '',
-  method: 'GET'
-  // interceptors: {
-  //   requestInterceptor: (config) => {
-  //     console.log('单独请求的config')
-  //     return config
-  //   },
-  //   responseInterceptor: (res) => {
-  //     console.log('单独响应的response')
-  //     return res
-  //   }
-  // }
-})
+// interface DataType {
+//   data: any
+//   returnCode: string
+//   success: boolean
+// }
+// hyRequest.get<DataType>({
+//   url: '',
+//   method: 'GET'
+//   // interceptors: {
+//   //   requestInterceptor: (config) => {
+//   //     console.log('单独请求的config')
+//   //     return config
+//   //   },
+//   //   responseInterceptor: (res) => {
+//   //     console.log('单独响应的response')
+//   //     return res
+//   //   }
+//   // }
+// })

@@ -10,6 +10,7 @@ import {
 } from '@/service/login/login'
 import { IAccount } from '@/service/login/type'
 import { ILoginState } from './types'
+import { mapMenusToRoutes } from '@/untils/map-menus'
 
 const LoginMoudle: Module<ILoginState, IRootStore> = {
   namespaced: true,
@@ -17,7 +18,7 @@ const LoginMoudle: Module<ILoginState, IRootStore> = {
     return {
       token: '',
       userInfo: {},
-      userMenus: {}
+      userMenus: []
     }
   },
   mutations: {
@@ -29,6 +30,15 @@ const LoginMoudle: Module<ILoginState, IRootStore> = {
     },
     changeUserMenus(state, userMenus: any) {
       state.userMenus = userMenus
+
+      //userMenus=>routes
+      const routes = mapMenusToRoutes(userMenus)
+      // console.log(routes)
+
+      //将routes=>router.main.children
+      routes.forEach((route) => {
+        router.addRoute('main', route)
+      })
     }
   },
   actions: {
@@ -38,12 +48,14 @@ const LoginMoudle: Module<ILoginState, IRootStore> = {
       const { id, token } = loginResult.data
       commit('changeToken', token)
       localCache.setCache('token', token)
+      console.log(loginResult)
 
       //2.请求用户信息
       const userInfoResult = await requestUserInfoById(id)
       const userInfo = userInfoResult.data
       commit('changeUserInfo', userInfo)
       localCache.setCache('userInfo', userInfo)
+      console.log(userInfoResult)
 
       // 3.请求用户菜单
       const userMenusResult = await requestUserMenusByRoleId(userInfo.role.id)

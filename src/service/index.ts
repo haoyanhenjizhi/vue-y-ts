@@ -13,7 +13,7 @@ export const hyRequest = new HYRequest({
       // console.log('请求成功的拦截')
       const token = localCache.getCache('token')
       if (token) {
-        config.headers.Authorization = `Bearer${token}`
+        config.headers.Authorization = `Bearer ${token}`
       }
       return config
     },

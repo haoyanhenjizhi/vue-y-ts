@@ -16,14 +16,17 @@
         <!-- 二级菜单 -->
         <template v-if="item.type === 1">
           <!-- 二级菜单可以展开的标题 -->
-          <el-submenu :index="item.id">
+          <el-submenu :index="item.id + ''">
             <template #title>
               <i v-if="item.icon" :class="item.icon"></i>
               <span>{{ item.name }}</span>
             </template>
             <!-- 遍历数据 -->
             <template v-for="subitem in item.children" :key="subitem.id">
-              <el-menu-item :index="subitem.id">
+              <el-menu-item
+                :index="subitem.id + ''"
+                @click="handelMenuClick(subitem)"
+              >
                 <i v-if="subitem.icon" :class="subitem.icon"></i>
                 <span>{{ subitem.name }}</span>
               </el-menu-item>
@@ -32,7 +35,7 @@
         </template>
         <!-- 1级菜单 -->
         <template v-else-if="item.type === 2">
-          <el-menu-item :index="item.id">
+          <el-menu-item :index="item.id + ''">
             <i v-if="item.icon" :class="item.class"></i>
             <span>{{ item.name }}</span>
           </el-menu-item>
@@ -45,6 +48,7 @@
 <script lang="ts">
 import { defineComponent, computed } from 'vue'
 import { useStore } from '@/store/index'
+import { useRouter } from 'vue-router'
 export default defineComponent({
   props: {
     collapse: {
@@ -54,9 +58,16 @@ export default defineComponent({
   },
   setup() {
     const store = useStore()
+    const router = useRouter()
     const userMenus = store.state.login.userMenus
+    const handelMenuClick = (item: any) => {
+      router.push({
+        path: item.url ?? '/not-found'
+      })
+    }
     return {
-      userMenus
+      userMenus,
+      handelMenuClick
     }
   }
 })

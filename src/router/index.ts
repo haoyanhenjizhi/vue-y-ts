@@ -8,11 +8,18 @@ const routes: RouteRecordRaw[] = [
   },
   {
     path: '/login',
+    name: 'login',
     component: () => import('@/views/login/login.vue')
   },
   {
+    name: 'main',
     path: '/main',
     component: () => import('@/views/main/main.vue')
+  },
+  {
+    name: 'not-found',
+    path: '/:pathMatch(.*)*',
+    component: () => import('@/views/not-found/not-found.vue')
   }
 ]
 
@@ -25,7 +32,7 @@ router.beforeEach((to) => {
   //路由导航 如果没有登录 跳到登录页面
   if (to.path !== '/login') {
     const token = localCache.getCache('token')
-    if (token) {
+    if (!token) {
       return '/login'
     }
   }

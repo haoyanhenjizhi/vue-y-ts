@@ -5,7 +5,7 @@ export interface IAccount {
 
 export interface ILoginResult {
   id: number
-  name: number
+  name: string
   token: string
 }
 
