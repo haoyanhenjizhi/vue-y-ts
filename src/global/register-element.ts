@@ -23,7 +23,12 @@ import {
   ElDropdownMenu,
   ElDropdownItem,
   ElAvatar,
-  ElPopper
+  ElPopper,
+  ElRow,
+  ElCol,
+  ElSelect,
+  ElOption,
+  ElDatePicker
 } from 'element-plus'
 
 const components = [
@@ -49,7 +54,12 @@ const components = [
   ElDropdownMenu,
   ElDropdownItem,
   ElAvatar,
-  ElPopper
+  ElPopper,
+  ElRow,
+  ElCol,
+  ElSelect,
+  ElOption,
+  ElDatePicker
 ]
 //下面的为遍历注册组件函数
 export default function (app: App): void {
