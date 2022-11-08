@@ -1,47 +1,23 @@
 <template>
   <div class="user">
-    <div class="search">
-      <el-form label-width="100px">
-        <el-row>
-          <el-col :span="8">
-            <el-form-item label="用户名">
-              <el-input />
-            </el-form-item>
-          </el-col>
-          <el-col :span="8">
-            <el-form-item label="密码">
-              <el-input show-password />
-            </el-form-item>
-          </el-col>
-          <el-col :span="8">
-            <el-form-item label="喜欢的运动">
-              <el-select>
-                <el-option>唱</el-option>
-                <el-option>跳</el-option>
-                <el-option>RAP</el-option>
-                <el-option>篮球</el-option>
-              </el-select>
-            </el-form-item>
-          </el-col>
-          <el-col :span="8">
-            <el-form-item label="创建时间">
-              <el-input />
-            </el-form-item>
-          </el-col>
-        </el-row>
-      </el-form>
-    </div>
+    <hy-form v-bind="searchFormConfig" />
     <div class="content"></div>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-
+import HyForm from '@/base-ui/form'
+import { searchFormConfig } from './config/search.config'
 export default defineComponent({
+  components: {
+    HyForm
+  },
   name: 'user',
   setup() {
-    return {}
+    return {
+      searchFormConfig
+    }
   }
 })
 </script>
