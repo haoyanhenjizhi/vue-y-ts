@@ -6,7 +6,7 @@
       @click="handleFoldClick"
     ></i>
     <div class="content">
-      <div>系统管理</div>
+      <bread-crumb :breadcrumbs="breadcrumbs" />
       <user-info />
     </div>
   </div>
@@ -15,18 +15,23 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
 import UserInfo from './user-info.vue'
+import BreadCrumb, { IBreadcrumb } from '@/base-ui/breadcrumb/index'
+
+import { pathMapBreadcrumbs } from '@/untils/map-menus'
 export default defineComponent({
   components: {
-    UserInfo
+    UserInfo,
+    BreadCrumb
   },
   emits: ['foldChange'],
   setup(props, { emit }) {
     const isFold = ref(false)
+    const breadcrumbs: IBreadcrumb[] = []
     const handleFoldClick = () => {
       isFold.value = !isFold.value
       emit('foldChange', isFold.value)
     }
-    return { isFold, handleFoldClick }
+    return { isFold, handleFoldClick, breadcrumbs }
   }
 })
 </script>

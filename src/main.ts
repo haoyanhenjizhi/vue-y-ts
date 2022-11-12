@@ -17,10 +17,12 @@ const app = createApp(App)
 
 // 注册element-plus/其他
 //app.use 如果是传入函数那么默认传过来就是APP 如果是传入一个对象那么默认执行install方法
+setupStore()
+//path:/user=>user
 app.use(router)
 app.use(store)
 app.use(globalRegister) //引入局部注册相关模块进行调用
-setupStore()
+
 app.mount('#app')
 
 // console.log(process.env.VUE_APP_BASE_URL)
