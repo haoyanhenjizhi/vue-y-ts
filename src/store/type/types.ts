@@ -1,6 +1,6 @@
 import { ILoginState } from '../login/types'
 import { ISystemState } from '../main/system/types'
-export interface IRootStore {
+export interface IRootState {
   name: string
   age: number
 }
@@ -10,4 +10,4 @@ export interface IRootWithMoudle {
   system: ISystemState
 }
 
-export type IStoreType = IRootStore & IRootWithMoudle //交叉类型
+export type IStoreType = IRootState & IRootWithMoudle //交叉类型

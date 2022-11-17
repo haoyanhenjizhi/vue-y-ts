@@ -1,10 +1,10 @@
 import { createStore, Store, useStore as useVuexStore } from 'vuex'
 
-import { IRootStore, IStoreType } from './type/types'
+import { IRootState, IStoreType } from './type/types'
 
 import login from './login/login'
 import system from './main/system/system'
-const store = createStore<IRootStore>({
+const store = createStore<IRootState>({
   state: () => {
     return {
       name: 'ahao',

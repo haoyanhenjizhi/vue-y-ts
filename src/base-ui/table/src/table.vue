@@ -1,16 +1,57 @@
 <template>
   <div class="hy-table">
-    <el-table :data="listData" border style="width: 100%">
-      <template v-for="proItem in propList" :key="proItem.prop">
-        <el-table-column v-bind="proItem" align="center">
+    <div class="header">
+      <slot name="header">
+        <div class="title">
+          {{ title }}
+        </div>
+        <div class="handler">
+          <slot name="headerHandler"></slot>
+        </div>
+      </slot>
+    </div>
+    <el-table
+      :data="listData"
+      border
+      style="width: 100%"
+      @selection-change="handeleSelectionChange"
+    >
+      <el-table-column
+        v-if="showSelectColumn"
+        type="selection"
+        align="center"
+      ></el-table-column>
+      <el-table-column
+        v-if="showIndexColumn"
+        type="index"
+        label="序号"
+        align="center"
+        width="85"
+      ></el-table-column>
+      <template v-for="propItem in propList" :key="propItem.prop">
+        <el-table-column align="center" v-bind="propItem">
           <template #default="scope">
-            <slot :name="proItem.slotName" :row="scope.row">
-              {{ scope.row[proItem.prop] }}</slot
+            <slot :name="propItem.slotName" :row="scope.row">
+              {{ scope.row[propItem.prop] }}</slot
             >
           </template>
         </el-table-column>
       </template>
     </el-table>
+    <div class="footer">
+      <slot name="footer">
+        <el-pagination
+          @size-change="handleSizeChange"
+          @current-change="handleCurrentChange"
+          :current-page="currentPage4"
+          :page-sizes="[10, 20, 30, 40]"
+          :page-size="10"
+          layout="total, sizes, prev, pager, next, jumper"
+          :total="40"
+        >
+        </el-pagination>
+      </slot>
+    </div>
   </div>
 </template>
 
@@ -19,6 +60,10 @@ import { defineComponent } from 'vue'
 
 export default defineComponent({
   props: {
+    title: {
+      type: String,
+      default: ''
+    },
     listData: {
       type: Array,
       required: true
@@ -26,12 +71,51 @@ export default defineComponent({
     propList: {
       type: Array,
       required: true
+    },
+    showIndexColumn: {
+      type: Boolean,
+      default: false
+    },
+    showSelectColumn: {
+      type: Boolean,
+      default: false
     }
   },
-  setup() {
-    return {}
+  emits: ['selectionChange'],
+  setup(props, { emit }) {
+    const handeleSelectionChange = (value: any) => {
+      emit('selectionChange', value)
+    }
+    return {
+      handeleSelectionChange
+    }
   }
 })
 </script>
 
-<style scoped></style>
+<style scoped lang="less">
+.header {
+  display: flex;
+  height: 45px;
+  padding: 0 5px;
+  justify-content: space-between;
+  align-items: center;
+
+  .title {
+    font-size: 20px;
+    font-weight: 700;
+  }
+
+  .handler {
+    align-items: center;
+  }
+}
+
+.footer {
+  margin-top: 15px;
+
+  .el-pagination {
+    text-align: right;
+  }
+}
+</style>

@@ -1,18 +1,20 @@
 type IFormType = 'input' | 'password' | 'select' | 'datepicker'
 
 export interface IFormItem {
-  type: IFormType
+  field?: string
+  type?: IFormType
   label: string
   rules?: any[]
   placeholder?: any
-  //针对select
+  // 针对select
   options?: any[]
-  //针对其他的
+  // 针对特殊的属性
   otherOptions?: any
 }
+
 export interface IForm {
-  labelWidth?: string
-  itemLayout: any
-  colLayout: any
   formItems: IFormItem[]
+  labelWidth?: string
+  colLayout?: any
+  itemLayout?: any
 }

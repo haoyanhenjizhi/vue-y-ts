@@ -1,6 +1,6 @@
 import { Module } from 'vuex'
 import router from '@/router'
-import { IRootStore } from '../type/types'
+import { IRootState } from '../type/types'
 
 import localCache from '@/untils/cache'
 import {
@@ -12,7 +12,7 @@ import { IAccount } from '@/service/login/type'
 import { ILoginState } from './types'
 import { mapMenusToRoutes } from '@/untils/map-menus'
 
-const LoginMoudle: Module<ILoginState, IRootStore> = {
+const LoginMoudle: Module<ILoginState, IRootState> = {
   namespaced: true,
   state() {
     return {
