@@ -10,7 +10,7 @@ import {
 } from '@/service/login/login'
 import { IAccount } from '@/service/login/type'
 import { ILoginState } from './types'
-import { mapMenusToRoutes } from '@/untils/map-menus'
+import { mapMenusToRoutes, maoMenusToPermissions } from '@/untils/map-menus'
 
 const LoginMoudle: Module<ILoginState, IRootState> = {
   namespaced: true,
@@ -18,7 +18,8 @@ const LoginMoudle: Module<ILoginState, IRootState> = {
     return {
       token: '',
       userInfo: {},
-      userMenus: []
+      userMenus: [],
+      permissions: []
     }
   },
   mutations: {
@@ -36,6 +37,12 @@ const LoginMoudle: Module<ILoginState, IRootState> = {
       // console.log(routes)
 
       //将routes=>router.main.children
+
+      //获取用户按钮的权限
+      const permissions = maoMenusToPermissions(userMenus)
+
+      state.permissions = permissions
+
       routes.forEach((route) => {
         router.addRoute('main', route)
       })

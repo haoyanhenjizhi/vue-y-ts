@@ -33,7 +33,8 @@ import {
   ElBreadcrumbItem,
   ElTable,
   ElTableColumn,
-  ElPagination
+  ElPagination,
+  ElImage
 } from 'element-plus'
 
 const components = [
@@ -69,7 +70,8 @@ const components = [
   ElBreadcrumbItem,
   ElTable,
   ElTableColumn,
-  ElPagination
+  ElPagination,
+  ElImage
 ]
 //下面的为遍历注册组件函数
 export default function (app: App): void {
